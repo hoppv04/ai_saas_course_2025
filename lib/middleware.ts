@@ -43,13 +43,19 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  //   if (
-  //     !user &&
-  //     !request.nextUrl.pathname.startsWith("/login") &&
-  //     !request.nextUrl.pathname.startsWith("/auth")
-  //   ) {
-  //     const url = request.nextUrl.clone();
-  //     url.pathname = "/login";
-  //     return NextResponse.redirect(url);
-  //   }
+  if (request.nextUrl.pathname === "/dashboard" && !user) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/signin";
+    return NextResponse.redirect(url);
+  }
+
+  // if (
+  //   !user &&
+  //   !request.nextUrl.pathname.startsWith("/login") &&
+  //   !request.nextUrl.pathname.startsWith("/auth")
+  // ) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/login";
+  //   return NextResponse.redirect(url);
+  // }
 }
